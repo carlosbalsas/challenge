@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.create!(email: 'test@test.com', password: '123456')
+user.save!
+currencies = Currency.create!([{name: 'BTC' }, {name: 'EUR'}, {name: 'XLM'}, {name: 'ADA'}])
+
+currencies.each do |currency|
+    currency.save!
+end 
+
+
+portfolio = Portfolio.create!(user_id: 1)
+portfolio.save!
+Portfolio.last.currencies = Currency.all
+ada = Portfolio.last.currencies.last
+ada.amount = 1000
+ada.save
+
+
