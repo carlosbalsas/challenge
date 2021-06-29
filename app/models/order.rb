@@ -1,5 +1,6 @@
-class Order < ApplicationRecord
+# frozen_string_literal: true
 
-    belong_to :user
-    belong_to :currency
+class Order < ApplicationRecord
+  belong_to :user
+  belong_to :currency
 end

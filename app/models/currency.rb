@@ -1,5 +1,6 @@
-class Currency < ApplicationRecord
+# frozen_string_literal: true
 
-    belongs_to :portfolio
-    has_many :orders
+class Currency < ApplicationRecord
+  belongs_to :portfolio
+  has_many :orders
 end

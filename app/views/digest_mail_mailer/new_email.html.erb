@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>You bought: </p>
+  <% @orders.each do |order| %>
+      <br>
+        <p><%= order.id %></p> 
+        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %> + <%= order.fee %> (Broker Fees) = <%= (order.price + order.fee).to_s %> (<%= order.broker %>) </p>
+    <% end %>
+   
+    <p> Your current balance is:  <p>
+    <p> Performing a total of:  <p>
+  </body>
+</html>
