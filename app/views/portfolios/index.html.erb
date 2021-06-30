@@ -1,2 +1,25 @@
-<h1>Wallet</h1>
-<p></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <h1>Wallet</h1>
+  
+  <% @orders.each do |order| %>
+    <% if order.status == "completed" %>
+    <p>You bought: </p>
+    <% sum = order.price + order.fee %> 
+        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %>€ + <%= order.fee %>€ (Broker Fees) = <%= sum %>€ (<%= order.broker %>) </p>
+    <% else %>
+    <% sum = order.price + order.fee %>
+    <p>At the order time the other options:</p>
+        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %>€ + <%= order.fee %>€ (Broker Fees) = <%= sum %>€ (<%= order.broker %>) </p>
+        <br>
+    <% end %>
+  <% end %>
+    <br>
+    <p> Your current balance is:  <p>
+    <p> Performing a total of:  <p>
+  </body>
+</html>

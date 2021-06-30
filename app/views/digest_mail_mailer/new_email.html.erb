@@ -4,13 +4,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  <p>You bought: </p>
+  <p>Hello,</p>
+  <p> Here's a briefing of your yesterday's investments:</p>
   <% @orders.each do |order| %>
-      <br>
-        <p><%= order.id %></p> 
-        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %> + <%= order.fee %> (Broker Fees) = <%= (order.price + order.fee).to_s %> (<%= order.broker %>) </p>
+    <% if order.status == "completed" %>
+    <p>You bought: </p>
+    <% sum = order.price + order.fee %> 
+        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %>€ + <%= order.fee %>€ (Broker Fees) = <%= sum %>€ (<%= order.broker %>) </p>
+    <% else %>
+    <% sum = order.price + order.fee %>
+    <p>At the order time the other options:</p>
+        <p><%= order.amount %>  <%= order.coin %> at  <%= order.price %>€ + <%= order.fee %>€ (Broker Fees) = <%= sum %>€ (<%= order.broker %>) </p>
+        <br>
     <% end %>
-   
+  <% end %>
+    <br>
     <p> Your current balance is:  <p>
     <p> Performing a total of:  <p>
   </body>

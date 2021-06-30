@@ -5,7 +5,7 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+#set :output, "/log/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -19,6 +19,16 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :day, :at => ‘9am’ do # Use any day of the week or :weekend,
-    rake “send_email”
+set :chronic_options, hours24: true
+
+every :day, :at => '09:00' do # Use any day of the week or :weekend,
+    rake "email:send_email"
+    runner "DigestMailMailer.new_email.deliver_now"
+end
+
+every 2.minutes do # Use any day of the week or :weekend,
+    rake "email:send_email"
+    #runner "DigestMailMailer.new_email.deliver_now"
+    
+    puts "email sent"
 end

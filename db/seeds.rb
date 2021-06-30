@@ -8,15 +8,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!(email: 'test@test.com', password: '123456')
-user.save!
-currencies = Currency.create!([{ name: 'BTC' }, { name: 'EUR' }, { name: 'XLM' }, { name: 'ADA' }])
-
-currencies.each(&:save!)
-
-portfolio = Portfolio.create!(user_id: 1)
-portfolio.save!
-Portfolio.last.currencies = Currency.all
-ada = Portfolio.last.currencies.last
-ada.amount = 1000
-ada.save
+Order.create!(amount: 1, coin: 'BTC', price: 100000, fee: 12000, broker: 'coinbase', status: 'completed').save
+Order.create!(amount: 1, coin: 'BTC', price: 100000, fee: 13000, broker: 'binance', status: 'rejected').save
+Order.create!(amount: 1, coin: 'BTC', price: 104000, fee: 12000, broker: 'coinbase', status: 'completed').save
+Order.create!(amount: 1, coin: 'BTC', price: 105000, fee: 12000, broker: 'binance', status: 'rejected').save
+Order.create!(amount: 1, coin: 'BTC', price: 120000, fee: 21000, broker: 'binance', status: 'completed').save
+Order.create!(amount: 1, coin: 'BTC', price: 136000, fee: 12300, broker: 'coinbase', status: 'rejected').save
